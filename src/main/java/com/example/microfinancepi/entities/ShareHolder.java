@@ -6,6 +6,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Getter
 @Setter
@@ -27,7 +28,10 @@ public class ShareHolder implements Serializable {
     private int numTel;
     @Enumerated(EnumType.STRING)
     private TypeShareholder partner;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JsonIgnore
     private Event event;
+
+
+
 }
