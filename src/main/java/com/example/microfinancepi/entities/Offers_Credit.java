@@ -1,6 +1,5 @@
 package com.example.microfinancepi.entities;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
@@ -13,24 +12,34 @@ import java.util.List;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-
 @Entity
-public class ShareHolder implements Serializable {
-
+@Data
+@Builder
+public class Offers_Credit implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idShareholder;
-    private String lastNameShareholder;
-    private String FirstNameShareholder;
-    private double investment;
-    private String Email;
-    private int numTel;
+    private Integer id_offer;
     @Enumerated(EnumType.STRING)
-    private TypeShareholder partner;
-    @ManyToOne(cascade = CascadeType.ALL)
+    private Type_of_credit credit;
+    private Integer max_amount;
+    private Integer min_amount;
+    private String interest_rate;
+    private String image;
+
+    private String date_creation;
+
+    private String repayment_period;
+
+
+
+    @OneToMany(mappedBy ="offer" )
     @JsonIgnore
-    private Event event;
+    private List<Request> requests;
+
+
+
+
 
 
 
